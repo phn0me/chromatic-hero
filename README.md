@@ -21,13 +21,17 @@ Classes
 
 You pick one at character creation. There is no hybrid build (yet).
 
-    Warrior: Melee tank. Can physically block beams. Struggles against enemies immune to physical damage unless you switch affinities to gain elemental buffs.
-    Wizard: Ranged caster. Deals high elemental damage but has low health. Must spend mana to reflect beams. If you run out of mana, you're vulnerable.
+    Warrior: Melee tank. Can physically block beams.
+    Struggles against enemies immune to physical damage unless you switch affinities to gain elemental buffs.
+
+    Wizard: Ranged caster. Deals high elemental damage but has low health.
+    Must spend mana to reflect beams. If you run out of mana, you're vulnerable.
 
 #### Progression
 
     Campaign: Restore the world from grayscale. Defeat wardens to unlock new colors.
-    Endgame: Procedural dungeons with random modifiers (e.g., "Fire Storm," "Physical Immunity"). Farm materials to craft gear tailored to specific dungeon types rather than hoping for a lucky drop.
+    Endgame: Procedural dungeons with random modifiers (e.g., "Fire Storm," "Physical Immunity").
+    Farm materials to craft gear tailored to specific dungeon types rather than hoping for a lucky drop.
 
 #### Tech Stack
 
