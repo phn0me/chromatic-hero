@@ -16,17 +16,6 @@ updates:
           - "minor"
           - "patch"
 
-  # Scan the Engine crate
-  - package-ecosystem: "cargo"
-    directory: "/corrosion-2d"
-    schedule:
-      interval: "weekly"
-    groups:
-      minor-patch:
-        update-types:
-          - "minor"
-          - "patch"
-
   # Scan the Game crate
   - package-ecosystem: "cargo"
     directory: "/chromatic-hero"
