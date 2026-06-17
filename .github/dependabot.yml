@@ -1,0 +1,39 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  # Scan the root workspace (if you have workspace-level deps)
+  - package-ecosystem: "cargo"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      minor-patch:
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Scan the Engine crate
+  - package-ecosystem: "cargo"
+    directory: "/corrosion-2d"
+    schedule:
+      interval: "weekly"
+    groups:
+      minor-patch:
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Scan the Game crate
+  - package-ecosystem: "cargo"
+    directory: "/chromatic-hero"
+    schedule:
+      interval: "weekly"
+    groups:
+      minor-patch:
+        update-types:
+          - "minor"
+          - "patch"
