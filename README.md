@@ -46,4 +46,4 @@ Early prototype phase. Core combat loop in progress.
 
 - [Design Document](docs/DESIGN.md)
 - [Crafting System](docs/CRAFTING.md)
-- [Dev Log](https://metrognomes.dev)
+- [Dev Log](https://metrognomes.dev/game-dev/0x2000_Init_v.2.0+-+Pivoting+to+Game-First+Development)
