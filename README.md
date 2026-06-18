@@ -1,51 +1,49 @@
-# The Chromatic Hero
+# Chromatic Hero
 
-A 2D top-down Action RPG written in Rust.
+A 2D top-down Action RPG written in Rust. No engines. No frameworks. CPU-rendered via `softbuffer`.
 
-I'm building this to explore a specific mechanic: **combat that relies entirely on color affinity**. No complex stats, just matching colors to exploit weaknesses. If you attack with the wrong color, you do nothing—or worse, you heal the enemy.
+## The Core Mechanic
 
-Inspired by the grinding loop of *Diablo II* and the exploration of *Zelda*, but stripped down to a single core system.
-
-## How It Works
-
-### The Affinity Cycle
-There are four colors: **Red**, **Green**, **Yellow**, and **Blue**. They follow a strict cycle:
+Combat runs on color affinity alone. Four colors, one cycle:
 
 - **Red** beats **Green**
 - **Green** beats **Yellow**
 - **Yellow** beats **Blue**
 - **Blue** beats **Red**
 
-If you attack with your current affinity against a weak point, you deal massive damage. If you attack with the same color, you deal zero damage (or heal the boss). You have to keep switching mid-fight.
+Attack with your matching weakness — massive damage. Attack with the same color — zero damage or heal the enemy. The complexity comes from switching affinities mid-fight, not grinding for numbers.
 
-### Classes
-You pick one at character creation. There is no hybrid build (yet).
+## Classes
 
-- **Warrior**: Melee tank. Can physically block beams. Struggles against enemies immune to physical damage unless you switch affinities to gain elemental buffs.
-- **Wizard**: Ranged caster. Deals high elemental damage but has low health. Must spend mana to reflect beams. If you run out of mana, you're vulnerable.
+Pick one at character creation. You stick with it. Solo viability is priority #1. Co-op is planned for later.
 
-### Progression
-- **Campaign**: Restore the world from grayscale. Defeat wardens to unlock new colors.
-- **Endgame**: Procedural dungeons with random modifiers (e.g., "Fire Storm," "Physical Immunity"). Farm materials to craft gear tailored to specific dungeon types rather than hoping for a lucky drop.
+| Warrior | Wizard |
+|---------|--------|
+| Melee tank | Ranged caster |
+| Blocks beams with shield | Reflects beams via mana spells |
+| High HP/Armor | Low health, high elemental damage |
+| Needs affinity switch vs physical-immune enemies | Vulnerable when out of mana |
+
+## Progression
+
+- **Campaign**: Restore a grayscale world by defeating Wardens to unlock colors.
+- **Endgame**: Procedural dungeons with random modifiers. Farm materials to craft gear tailored to specific dungeon types rather than hoping for lucky drops.
 
 ## Tech Stack
 
 - **Language**: Rust
-- **Rendering**: `softbuffer` (CPU-based). I chose this for pixel-perfect control and fast iteration without getting bogged down in GPU boilerplate.
+- **Rendering**: `softbuffer` (CPU-based pixel manipulation)
 - **Input**: `winit`
+- **Architecture**: Custom ECS + FSM
 
-## Roadmap
+We refactor when the pain hits, not before. All code lives in `/src/engine/` inside a single binary until there's reason to split.
 
-- [ ] Core combat loop (movement, affinity switching, basic enemies)
-- [ ] Full implementation of Warrior vs. Wizard
-- [ ] First boss fight (Void Stalker)
-- [ ] Crafting system & inventory UI
-- [ ] Procedural map generation
-- [ ] Local Co-op (planned for later)
+## Status
 
-## Documentation
+Early prototype phase. Core combat loop in progress.
 
-If you are curious about the design logic or how the systems fit together:
+## Links
 
-- **[docs/DESIGN.md](docs/DESIGN.md)** — The full Game Design Document
-- **[docs/CRAFTING.md](docs/CRAFTING.md)** — Details on the loot and crafting economy
+- [Design Document](docs/DESIGN.md)
+- [Crafting System](docs/CRAFTING.md)
+- [Dev Log](https://metrognomes.dev)
