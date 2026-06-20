@@ -5,29 +5,31 @@ pub struct Engine {
     pub config: EngineConfig,
 }
 
-struct EngineConfig {
+pub struct EngineConfig {
     title: String,
     width: u32,
     height: u32,
     resizable: bool,
     decorations: bool,
-    full_screen: bool,
 }
 
 impl Default for EngineConfig {
     fn default() -> Self {
-        Self::new("Chromatic Hero".to_string(), 800, 600, false, true, false)
+        Self::new("Chromatic Hero".to_string(), 800, 600, false, true)
     }
 }
 
 impl EngineConfig {
-    pub fn new(title: String, width: u32, height: u32, resizable: bool, decorations: bool, full_screen: bool) -> Self {
-        EngineConfig { title, width, height, resizable, decorations, full_screen }
+    pub fn new(title: String, width: u32, height: u32, resizable: bool, decorations: bool) -> Self {
+        EngineConfig { title, width, height, resizable, decorations}
     }
 }
 impl Engine {
-    pub fn new(title: String, width: u32, height: u32) -> Self {
-        let attributes: WindowAttributes = WindowAttributes::default().with_title(title).with_inner_size(dpi::LogicalSize::new(width, height));
+    pub fn new(config: EngineConfig) -> Self {
 
+        Self {
+            window: None,
+            config
+        }
     }
 }
