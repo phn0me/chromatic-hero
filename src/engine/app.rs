@@ -1,4 +1,7 @@
-use winit::{dpi, window::{Window, WindowAttributes}};
+use winit::{
+    dpi,
+    window::{Window, WindowAttributes},
+};
 
 pub struct Engine {
     pub window: Option<Window>,
@@ -21,15 +24,20 @@ impl Default for EngineConfig {
 
 impl EngineConfig {
     pub fn new(title: String, width: u32, height: u32, resizable: bool, decorations: bool) -> Self {
-        EngineConfig { title, width, height, resizable, decorations}
+        EngineConfig {
+            title,
+            width,
+            height,
+            resizable,
+            decorations,
+        }
     }
 }
 impl Engine {
     pub fn new(config: EngineConfig) -> Self {
-
         Self {
             window: None,
-            config
+            config,
         }
     }
 }
