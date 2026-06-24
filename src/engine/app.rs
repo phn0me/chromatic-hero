@@ -21,7 +21,7 @@ pub struct EngineConfig {
 
 impl Default for EngineConfig {
     fn default() -> Self {
-        Self::new("Chromatic Hero".to_string(), 800, 600, false, true)
+        Self::new("Chromatic Hero".to_string(), 600, 480, false, true)
     }
 }
 
@@ -84,13 +84,10 @@ impl ApplicationHandler for Engine {
         match event {
             WindowEvent::CloseRequested => {
                 println!("Close requested!");
-                // In a real app, maybe save state here
-                // For now, exit
-                event_loop.exit(); // winit exits automatically on close on most platforms, but explicit is fine
+                event_loop.exit();
             }
             WindowEvent::RedrawRequested => {
                 if let Some(window) = &self.window {
-                    // TODO: Draw pixels here soon
                     window.request_redraw();
                     // println!("Resized: {:?}", window.inner_size());
                 }
@@ -103,7 +100,9 @@ impl ApplicationHandler for Engine {
                         ..
                     },
                 ..
-            } => {}
+            } => {
+                println!("{:?}", _key)
+            }
             _ => {}
         }
     }
