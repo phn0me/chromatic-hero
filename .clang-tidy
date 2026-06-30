@@ -1,0 +1,35 @@
+Checks: >
+  -*,
+  bugprone-*,
+  cert-*,
+  clang-analyzer-*,
+  cppcoreguidelines-pro-type-cstyle-cast,
+  misc-*,
+  performance-*,
+  portability-*,
+  readability-*,
+  -bugprone-easily-swappable-parameters,
+  -readability-magic-numbers,
+  -readability-identifier-length,
+  -cert-err34-c,
+  -misc-no-recursion,
+  -readability-function-cognitive-complexity
+
+WarningsAsErrors: ''
+HeaderFilterRegex: '^(?!.*(SDL3|vendor)).*$'
+
+FormatStyle: file
+
+CheckOptions:
+  - key:   readability-identifier-naming.VariableCase
+    value: snake_case
+  - key:   readability-identifier-naming.FunctionCase
+    value: snake_case
+  - key:   readability-identifier-naming.StructCase
+    value: PascalCase
+  - key:   readability-identifier-naming.EnumCase
+    value: PascalCase
+  - key:   readability-identifier-naming.EnumConstantCase
+    value: UPPER_CASE
+  - key:   readability-identifier-naming.DefineCase
+    value: UPPER_CASE
