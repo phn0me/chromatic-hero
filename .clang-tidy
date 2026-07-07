@@ -13,7 +13,9 @@ Checks: >
   -readability-identifier-length,
   -cert-err34-c,
   -misc-no-recursion,
-  -readability-function-cognitive-complexity
+  -readability-function-cognitive-complexity,
+  cppcoreguidelines-pro-type-caste-cast,
+  -performance-enum-size,
 
 WarningsAsErrors: ''
 HeaderFilterRegex: '^(?!.*(SDL3|vendor)).*$'
