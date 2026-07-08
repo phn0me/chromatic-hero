@@ -1,17 +1,19 @@
 CC := clang
 CFLAGS := -std=c17 -Wall -Wextra -Wpedantic -O0 -g3 -fsanitize=address,undefined
 LIBS := $(shell pkg-config --libs sdl3)
+
+SRCS := src/main.c src/engine/engine.c
 TARGET := chromatic_hero_debug
 
 all: debug
 
-debug: main.c
-	$(CC) $(CFLAGS) -o $(TARGET) main.c $(LIBS)
+debug: $(SRCS)
+	$(CC) $(CFLAGS) -Isrc/engine -o $(TARGET) $(SRCS) $(LIBS)
 
-run: $(TARGET)
+run: debug
 	./$(TARGET)
 
 clean:
-	rm -f *.o $(TARGET)
+	rm -f $(TARGET)
 
 .PHONY: all debug run clean

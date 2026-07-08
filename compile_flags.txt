@@ -1,0 +1,3 @@
+-std=c17
+-Isrc/engine
+-Isrc/game
