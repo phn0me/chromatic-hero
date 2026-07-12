@@ -1,15 +1,12 @@
 #include "engine.h"
 #include <stdio.h>
 
-Uint64 last_tick = 0;
-Uint64 current_tick = 0;
-float delta_time = 0.0F;
-void engine_update(void)
+void engine_update(Engine *engine)
 {
-    last_tick = current_tick;
-    current_tick = SDL_GetTicks();
-    delta_time = (current_tick - last_tick) / 1000.0F;
-    printf("\r%f", delta_time);
+    engine->timer.last_tick = engine->timer.current_tick;
+    engine->timer.current_tick = SDL_GetTicks();
+    engine->timer.delta_time = (engine->timer.current_tick - engine->timer.last_tick) / 1000.0F;
+    printf("\r%f", engine->timer.delta_time);
 }
 
 bool engine_init(Engine *engine, const char *title, int width, int height)
