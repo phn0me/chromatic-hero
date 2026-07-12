@@ -50,6 +50,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
     SDL_SetRenderDrawColorFloat(renderer, red, green, blue, SDL_ALPHA_OPAQUE_FLOAT);
     SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer);
+    engine_update();
 
     return SDL_APP_CONTINUE;
 }
