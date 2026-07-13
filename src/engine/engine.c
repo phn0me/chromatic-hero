@@ -1,16 +1,16 @@
 #include "engine.h"
-#include <stdio.h>
 
 void engine_update(Engine *engine)
 {
     engine->timer.last_tick = engine->timer.current_tick;
-    engine->timer.current_tick = SDL_GetTicks();
-    engine->timer.delta_time = (engine->timer.current_tick - engine->timer.last_tick) / 1000.0F;
-    printf("\r%f", engine->timer.delta_time);
+    engine->timer.current_tick = SDL_GetPerformanceCounter();
+    engine->timer.delta_time = (double)(engine->timer.current_tick - engine->timer.last_tick)
+                           / (double)engine->timer.frequency;
 }
 
 bool engine_init(Engine *engine, const char *title, int width, int height)
 {
+
     if (!SDL_Init(SDL_INIT_VIDEO)) {
         SDL_Log("Failed to init SDL: %s", SDL_GetError());
         return false;
@@ -25,6 +25,9 @@ bool engine_init(Engine *engine, const char *title, int width, int height)
 
     SDL_SetRenderLogicalPresentation(engine->renderer, width, height,
                                      SDL_LOGICAL_PRESENTATION_LETTERBOX);
+
+    engine->timer.frequency = SDL_GetPerformanceFrequency();
+    engine->timer.current_tick = SDL_GetPerformanceCounter();
     return true;
 }
 

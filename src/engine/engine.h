@@ -5,9 +5,10 @@
 #include <stdbool.h>
 
 typedef struct Timer {
+    Uint64    frequency;
     Uint64    last_tick;
     Uint64    current_tick;
-    float     delta_time;
+    double     delta_time;
 } Timer;
 
 typedef struct Engine {
