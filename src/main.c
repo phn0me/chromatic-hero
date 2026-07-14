@@ -5,12 +5,11 @@
 
 #include "engine.h"
 
-SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
-{
-    (void)argc;
-    (void)argv;
+SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[]) {
+    (void) argc;
+    (void) argv;
 
-    Engine *engine = calloc(1, sizeof(Engine));
+    Engine* engine = calloc(1, sizeof(Engine));
     if (!engine) {
         SDL_Log("Failed to allocate Engine");
         return SDL_APP_FAILURE;
@@ -25,9 +24,8 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
     return SDL_APP_CONTINUE;
 }
 
-SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
-{
-    (void)appstate;
+SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event) {
+    (void) appstate;
 
     if (event->type == SDL_EVENT_QUIT) {
         return SDL_APP_SUCCESS;
@@ -36,16 +34,15 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
     return SDL_APP_CONTINUE;
 }
 
-SDL_AppResult SDL_AppIterate(void *appstate)
-{
-    Engine *engine = (Engine *)appstate;
-    SDL_Renderer *renderer = engine_get_renderer(engine);
+SDL_AppResult SDL_AppIterate(void* appstate) {
+    Engine* engine = (Engine*) appstate;
+    SDL_Renderer* renderer = engine_get_renderer(engine);
 
     /* Smoke test: color cycle proves renderer works after extraction */
-    const double now = ((double)SDL_GetTicks()) / 1000.0;
-    const float red   = (float)(0.5 + 0.5 * SDL_sin(now));
-    const float green = (float)(0.5 + 0.5 * SDL_sin(now + SDL_PI_D * 2 / 3));
-    const float blue  = (float)(0.5 + 0.5 * SDL_sin(now + SDL_PI_D * 4 / 3));
+    const double now = ((double) SDL_GetTicks()) / 1000.0;
+    const float red = (float) (0.5 + 0.5 * SDL_sin(now));
+    const float green = (float) (0.5 + 0.5 * SDL_sin(now + SDL_PI_D * 2 / 3));
+    const float blue = (float) (0.5 + 0.5 * SDL_sin(now + SDL_PI_D * 4 / 3));
 
     SDL_SetRenderDrawColorFloat(renderer, red, green, blue, SDL_ALPHA_OPAQUE_FLOAT);
     SDL_RenderClear(renderer);
@@ -55,12 +52,12 @@ SDL_AppResult SDL_AppIterate(void *appstate)
     return SDL_APP_CONTINUE;
 }
 
-void SDL_AppQuit(void *appstate, SDL_AppResult result)
-{
-    (void)result;
+void SDL_AppQuit(void* appstate, SDL_AppResult result) {
+    (void) result;
 
-    Engine *engine = (Engine *)appstate;
-    if (!engine) return;
+    Engine* engine = (Engine*) appstate;
+    if (!engine)
+        return;
 
     engine_shutdown(engine);
     free(engine);

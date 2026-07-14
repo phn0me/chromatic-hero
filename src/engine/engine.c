@@ -1,24 +1,20 @@
 #include "engine.h"
 
-void engine_update(Engine *engine)
-{
+void engine_update(Engine* engine) {
     engine->timer.last_tick = engine->timer.current_tick;
     engine->timer.current_tick = SDL_GetPerformanceCounter();
-    engine->timer.delta_time = (double)(engine->timer.current_tick - engine->timer.last_tick)
-                           / (double)engine->timer.frequency;
+    engine->timer.delta_time = (double) (engine->timer.current_tick - engine->timer.last_tick) /
+                               (double) engine->timer.frequency;
 }
 
-bool engine_init(Engine *engine, const char *title, int width, int height)
-{
-
+bool engine_init(Engine* engine, const char* title, int width, int height) {
     if (!SDL_Init(SDL_INIT_VIDEO)) {
         SDL_Log("Failed to init SDL: %s", SDL_GetError());
         return false;
     }
 
-    if (!SDL_CreateWindowAndRenderer(title, width, height,
-                                     SDL_WINDOW_RESIZABLE,
-                                     &engine->window, &engine->renderer)) {
+    if (!SDL_CreateWindowAndRenderer(title, width, height, SDL_WINDOW_RESIZABLE, &engine->window,
+                                     &engine->renderer)) {
         SDL_Log("Failed to create window/renderer: %s", SDL_GetError());
         return false;
     }
@@ -31,8 +27,7 @@ bool engine_init(Engine *engine, const char *title, int width, int height)
     return true;
 }
 
-void engine_shutdown(Engine *engine)
-{
+void engine_shutdown(Engine* engine) {
     if (engine->renderer) {
         SDL_DestroyRenderer(engine->renderer);
         engine->renderer = NULL;
@@ -44,7 +39,6 @@ void engine_shutdown(Engine *engine)
     SDL_Quit();
 }
 
-SDL_Renderer *engine_get_renderer(const Engine *engine)
-{
+SDL_Renderer* engine_get_renderer(const Engine* engine) {
     return engine->renderer;
 }
