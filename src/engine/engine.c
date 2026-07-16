@@ -1,10 +1,12 @@
 #include "engine.h"
-
+#include <SDL3/SDL_keyboard.h>
+#include "input.h"
 void engine_update(Engine* engine) {
     engine->timer.last_tick = engine->timer.current_tick;
     engine->timer.current_tick = SDL_GetPerformanceCounter();
     engine->timer.delta_time = (double) (engine->timer.current_tick - engine->timer.last_tick) /
                                (double) engine->timer.frequency;
+    input_update(&engine->input_state);
 }
 
 bool engine_init(Engine* engine, const char* title, int width, int height) {
@@ -24,6 +26,8 @@ bool engine_init(Engine* engine, const char* title, int width, int height) {
 
     engine->timer.frequency = SDL_GetPerformanceFrequency();
     engine->timer.current_tick = SDL_GetPerformanceCounter();
+
+    input_init(&engine->input_state);
     return true;
 }
 

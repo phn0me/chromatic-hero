@@ -51,8 +51,6 @@ SDL_AppResult SDL_AppIterate(void* appstate) {
     SDL_RenderPresent(renderer);
     engine_update(engine);
 
-    const _Bool InputState = SDL_GetKeyboardState(NULL) != 0;
-    printf("%d",InputState);
     return SDL_APP_CONTINUE;
 }
 
