@@ -1,7 +1,9 @@
 #include "engine.h"
 #include <SDL3/SDL_keyboard.h>
+#include <SDL3/SDL_render.h>
 #include "input.h"
 void engine_update(Engine* engine) {
+
     engine->timer.last_tick = engine->timer.current_tick;
     engine->timer.current_tick = SDL_GetPerformanceCounter();
     engine->timer.delta_time = (double) (engine->timer.current_tick - engine->timer.last_tick) /
@@ -10,6 +12,7 @@ void engine_update(Engine* engine) {
 }
 
 bool engine_init(Engine* engine, const char* title, int width, int height) {
+
     if (!SDL_Init(SDL_INIT_VIDEO)) {
         SDL_Log("Failed to init SDL: %s", SDL_GetError());
         return false;
@@ -23,7 +26,7 @@ bool engine_init(Engine* engine, const char* title, int width, int height) {
 
     SDL_SetRenderLogicalPresentation(engine->renderer, width, height,
                                      SDL_LOGICAL_PRESENTATION_LETTERBOX);
-
+    SDL_SetRenderVSync(engine->renderer, 1);
     engine->timer.frequency = SDL_GetPerformanceFrequency();
     engine->timer.current_tick = SDL_GetPerformanceCounter();
 

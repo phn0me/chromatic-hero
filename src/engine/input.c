@@ -5,17 +5,21 @@
 #include <SDL3/SDL_keycode.h>
 #include <stdio.h>
 
-void init_inupt(InputState *input_state) {
+void input_init(InputState *input_state) {
  SDL_ResetKeyboard();
  input_state->current = SDL_GetKeyboardState(NULL);
 }
-void update_input(InputState *input_state) {
-  input_state->current = SDL_GetKeyboardState(NULL);
 
-  //do other stuffs later on, or something.
+void input_update(InputState *input_state) {
+    input_state->current = SDL_GetKeyboardState(NULL);
 
+    if (!input_state->current[SDL_SCANCODE_W] && input_state->previous[SDL_SCANCODE_W]) {
+        printf("W Just released\n");
+    }
 
-  if (input_state->current[SDL_SCANCODE_W]) {
-    printf("W Pressed");
-      }
+    if (input_state->current[SDL_SCANCODE_W] && !input_state->previous[SDL_SCANCODE_W]) {
+        printf("W Just pressed\n");
+    }
+
+    memcpy(input_state->previous, input_state->current, SDL_SCANCODE_COUNT);
 }
