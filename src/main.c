@@ -1,5 +1,4 @@
 #include <stdbool.h>
-#include <stdio.h>
 #define SDL_MAIN_USE_CALLBACKS 1
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
@@ -58,8 +57,9 @@ void SDL_AppQuit(void* appstate, SDL_AppResult result) {
     (void) result;
 
     Engine* engine = (Engine*) appstate;
-    if (!engine)
+    if (!engine) {
         return;
+}
 
     engine_shutdown(engine);
     free(engine);

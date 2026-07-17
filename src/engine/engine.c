@@ -13,6 +13,7 @@ void engine_update(Engine* engine) {
 
 bool engine_init(Engine* engine, const char* title, int width, int height) {
 
+    memset(engine, 0, sizeof(Engine));
     if (!SDL_Init(SDL_INIT_VIDEO)) {
         SDL_Log("Failed to init SDL: %s", SDL_GetError());
         return false;
