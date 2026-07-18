@@ -5,12 +5,12 @@
 #include <SDL3/SDL_keycode.h>
 #include <stdio.h>
 
-void input_init(InputState *input_state) {
- SDL_ResetKeyboard();
- input_state->current = SDL_GetKeyboardState(NULL);
+void input_init(InputState* input_state) {
+    SDL_ResetKeyboard();
+    input_state->current = SDL_GetKeyboardState(NULL);
 }
 
-void input_update(InputState *input_state) {
+void input_update(InputState* input_state) {
     input_state->current = SDL_GetKeyboardState(NULL);
 
     if (!input_state->current[SDL_SCANCODE_W] && input_state->previous[SDL_SCANCODE_W]) {

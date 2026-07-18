@@ -59,7 +59,7 @@ void SDL_AppQuit(void* appstate, SDL_AppResult result) {
     Engine* engine = (Engine*) appstate;
     if (!engine) {
         return;
-}
+    }
 
     engine_shutdown(engine);
     free(engine);

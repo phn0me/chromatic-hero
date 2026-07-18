@@ -5,14 +5,14 @@
 #include <stdbool.h>
 #include "input.h"
 
-typedef struct Timer {
+typedef struct {
     Uint64 frequency;
     Uint64 last_tick;
     Uint64 current_tick;
     double delta_time;
 } Timer;
 
-typedef struct Engine {
+typedef struct {
     SDL_Window* window;
     SDL_Renderer* renderer;
     Timer timer;
