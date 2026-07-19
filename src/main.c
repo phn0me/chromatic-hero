@@ -1,5 +1,5 @@
-#include <stdbool.h>
 #define SDL_MAIN_USE_CALLBACKS 1
+#include <stdbool.h>
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 #include <stdlib.h>
