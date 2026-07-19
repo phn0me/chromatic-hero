@@ -2,6 +2,7 @@
 #include <SDL3/SDL_keyboard.h>
 #include <SDL3/SDL_render.h>
 #include "input.h"
+
 void engine_update(Engine* engine) {
     engine->timer.last_tick = engine->timer.current_tick;
     engine->timer.current_tick = SDL_GetPerformanceCounter();

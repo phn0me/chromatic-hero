@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ENGINE_H
+#define ENGINE_H
 
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_stdinc.h>
@@ -23,3 +24,5 @@ bool engine_init(Engine* engine, const char* title, int width, int height);
 void engine_shutdown(Engine* engine);
 SDL_Renderer* engine_get_renderer(const Engine* engine);
 void engine_update(Engine* engine);
+
+#endif
