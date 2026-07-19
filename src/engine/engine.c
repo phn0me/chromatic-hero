@@ -11,6 +11,17 @@ void engine_update(Engine* engine) {
     input_update(&engine->input_state);
 }
 
+void engine_render(SDL_Renderer* renderer) {
+    const double now = ((double) SDL_GetTicks()) / 1000.0;
+    const float red = (float) (0.5 + 0.5 * SDL_sin(now));
+    const float green = (float) (0.5 + 0.5 * SDL_sin(now + SDL_PI_D * 2 / 3));
+    const float blue = (float) (0.5 + 0.5 * SDL_sin(now + SDL_PI_D * 4 / 3));
+
+    SDL_SetRenderDrawColorFloat(renderer, red, green, blue, SDL_ALPHA_OPAQUE_FLOAT);
+    SDL_RenderClear(renderer);
+    SDL_RenderPresent(renderer);
+}
+
 bool engine_init(Engine* engine, const char* title, int width, int height) {
     memset(engine, 0, sizeof(Engine));
     if (!SDL_Init(SDL_INIT_VIDEO)) {

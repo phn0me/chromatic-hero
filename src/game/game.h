@@ -14,6 +14,6 @@ typedef struct {
     GameState state;
 } Game;
 
-bool init_game(Game* game, Engine* engine);
-void update_game(Game* game, Engine* engine, float delta_time);
+bool game_init(Game* game, Engine* engine);
+void game_update(Game* game, Engine* engine, float delta_time);
 #endif
