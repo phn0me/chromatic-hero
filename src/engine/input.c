@@ -1,25 +1,26 @@
-#include <SDL3/SDL_scancode.h>
-#include <input.h>
-#include <SDL3/SDL_events.h>
+#include "input.h"
+
 #include <SDL3/SDL_keyboard.h>
-#include <SDL3/SDL_keycode.h>
-#include <stdio.h>
 
 void input_init(InputState* input_state) {
-    SDL_ResetKeyboard();
     input_state->current = SDL_GetKeyboardState(NULL);
+    // NOLINTNEXTLINE(clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling)
+    memset(input_state->previous, 0, sizeof(input_state->previous));
 }
 
 void input_update(InputState* input_state) {
+    // Update current state from SDL
     input_state->current = SDL_GetKeyboardState(NULL);
 
-    if (!input_state->current[SDL_SCANCODE_W] && input_state->previous[SDL_SCANCODE_W]) {
-        printf("W Just released\n");
-    }
+    // Swap: copy current → previous for next frame
+    // NOLINTNEXTLINE(clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling)
+    memcpy(input_state->previous, input_state->current, sizeof(input_state->previous));
+}
 
-    if (input_state->current[SDL_SCANCODE_W] && !input_state->previous[SDL_SCANCODE_W]) {
-        printf("W Just pressed\n");
-    }
+bool input_is_just_pressed(const InputState* input_state, int scancode) {
+    return input_state->current[scancode] && !input_state->previous[scancode];
+}
 
-    memcpy(input_state->previous, input_state->current, SDL_SCANCODE_COUNT);
+bool input_is_just_released(const InputState* input_state, int scancode) {
+    return !input_state->current[scancode] && input_state->previous[scancode];
 }

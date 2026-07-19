@@ -8,7 +8,7 @@ bool game_init(Game* game, Engine* engine) {
     return true;
 }
 
-void game_update(Game* game, Engine* engine, float delta_time) {
+void game_update(Game* game, Engine* engine, double delta_time) {
     (void) engine;
     (void) delta_time;
 
