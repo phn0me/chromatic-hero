@@ -5,8 +5,9 @@
 #include <stdbool.h>
 
 typedef struct {
-    const bool* current;                    // SDL3 returns const bool*
-    bool previous[SDL_SCANCODE_COUNT];     // Match the type
+    const bool* sdl_keys;             // Live pointer from SDL (borrowed)
+    bool current[SDL_SCANCODE_COUNT]; // Your snapshot
+    bool previous[SDL_SCANCODE_COUNT];
 } InputState;
 
 void input_init(InputState* input_state);

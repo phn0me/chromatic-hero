@@ -14,7 +14,6 @@ void game_update(Game* game, Engine* engine, double delta_time) {
 
     switch (game->state) {
         case GAME_STATE_RUNNING:
-            engine_render(engine->renderer);
             break;
         case GAME_STATE_PAUSED:
             break;
