@@ -18,7 +18,7 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(SDL3 REQUIRED IMPORTED_TARGET sdl3)
 
 # Executable
-add_executable(chromatic_hero_debug
+add_executable(chromatic_abberation
         src/main.c
         src/engine/engine.c
         src/engine/input.c
@@ -26,17 +26,17 @@ add_executable(chromatic_hero_debug
 )
 
 # Include directories
-target_include_directories(chromatic_hero_debug PRIVATE
+target_include_directories(chromatic_abberation PRIVATE
         ${PROJECT_SOURCE_DIR}/src
         ${PROJECT_SOURCE_DIR}/src/engine
         ${PROJECT_SOURCE_DIR}/src/game
 )
 
 # Link SDL3 and sanitizers
-target_link_libraries(chromatic_hero_debug PRIVATE PkgConfig::SDL3)
+target_link_libraries(chromatic_abberation PRIVATE PkgConfig::SDL3)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    target_link_options(chromatic_hero_debug PRIVATE
+    target_link_options(chromatic_abberation PRIVATE
             -fsanitize=address,undefined
     )
 endif()
