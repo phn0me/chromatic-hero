@@ -1,0 +1,46 @@
+# Chromatic Hero
+
+A 2D top-down Action RPG written in C. No "engine", just SDL3 as a framework.
+
+## The Core Mechanic
+
+Combat runs on color affinity alone. Four colors, one cycle:
+
+- **Red** beats **Green**
+- **Green** beats **Yellow**
+- **Yellow** beats **Blue**
+- **Blue** beats **Red**
+
+Attack with your matching weakness — massive damage. Attack with the same color — zero damage or heal the enemy. The complexity comes from switching affinities mid-fight, not grinding for numbers.
+
+## Classes
+
+Pick one at character creation. You stick with it. Solo viability is priority #1. Co-op is planned for later.
+
+| Warrior | Wizard |
+|---------|--------|
+| Melee tank | Ranged caster |
+| Blocks beams with shield | Reflects beams via mana spells |
+| High HP/Armor | Low health, high elemental damage |
+| Needs affinity switch vs physical-immune enemies | Vulnerable when out of mana |
+
+## Progression
+
+- **Campaign**: Restore a grayscale world by defeating Wardens to unlock colors.
+- **Endgame**: Procedural dungeons with random modifiers. Farm materials to craft gear tailored to specific dungeon types rather than hoping for lucky drops.
+
+## Tech Stack
+
+- **Language**: C
+- **Framework**: SDL3
+- **Architecture**: Custom ECS + FSM
+
+## Status
+
+Early prototype phase. Core combat loop in progress.
+
+## Links
+
+- [Design Document](docs/DESIGN.md)
+- [Crafting System](docs/CRAFTING.md)
+- [Dev Log](https://metrognomes.dev/game-dev/0x2000_Init_v.2.0+-+Pivoting+to+Game-First+Development)
