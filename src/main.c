@@ -21,6 +21,7 @@ int main(int argc, char* argv[]) {
 
     while (game.state == GAME_STATE_RUNNING) {  // Ensure this matches enum!
         SDL_Event event;
+        const bool *key_state = SDL_GetKeyboardState(NULL);
 
         // Pump events (handles window close, input, etc.)
         while (SDL_PollEvent(&event)) {
@@ -31,7 +32,7 @@ int main(int argc, char* argv[]) {
 
         engine_update(&engine);  // Updates input_state BEFORE checking
 
-        if (input_is_just_pressed(&engine.input_state, SDL_SCANCODE_ESCAPE)) {
+        if (key_state[SDL_SCANCODE_ESCAPE]) {
             printf("ESCAPE pressed\n");
             game.state = GAME_STATE_PAUSED;
             break;  // Exit loop

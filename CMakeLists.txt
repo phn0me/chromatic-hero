@@ -21,7 +21,6 @@ pkg_check_modules(SDL3 REQUIRED IMPORTED_TARGET sdl3)
 add_executable(chromatic_abberation
         src/main.c
         src/engine/engine.c
-        src/engine/input.c
         src/game/game.c
 )
 

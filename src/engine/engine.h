@@ -5,7 +5,6 @@
 #include <SDL3/SDL_render.h>
 #include <SDL3/SDL_stdinc.h>
 #include <stdbool.h>
-#include "input.h"
 
 typedef struct {
     Uint64 frequency;
@@ -18,7 +17,6 @@ typedef struct {
     SDL_Window* window;
     SDL_Renderer* renderer;
     Timer timer;
-    InputState input_state;
 } Engine;
 
 bool engine_init(Engine* engine, const char* title, int width, int height);
