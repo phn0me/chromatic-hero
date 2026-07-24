@@ -20,7 +20,7 @@ typedef struct {
 } Engine;
 
 bool engine_init(Engine* engine, const char* title, int width, int height);
-void engine_shutdown(Engine* engine);
+bool engine_shutdown(Engine* engine);
 SDL_Renderer* engine_get_renderer(const Engine* engine);
 void engine_update(Engine* engine);
 void engine_render(SDL_Renderer* renderer);

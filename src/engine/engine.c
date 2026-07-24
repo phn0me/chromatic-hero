@@ -1,5 +1,4 @@
 #include "engine.h"
-#include <SDL3/SDL_keyboard.h>
 #include <SDL3/SDL_render.h>
 
 void engine_update(Engine* engine) {
@@ -42,7 +41,7 @@ bool engine_init(Engine* engine, const char* title, int width, int height) {
     return true;
 }
 
-void engine_shutdown(Engine* engine) {
+bool engine_shutdown(Engine* engine) {
     if (engine->renderer) {
         SDL_DestroyRenderer(engine->renderer);
         engine->renderer = NULL;
@@ -51,7 +50,7 @@ void engine_shutdown(Engine* engine) {
         SDL_DestroyWindow(engine->window);
         engine->window = NULL;
     }
-    SDL_Quit();
+    return true;
 }
 
 SDL_Renderer* engine_get_renderer(const Engine* engine) {

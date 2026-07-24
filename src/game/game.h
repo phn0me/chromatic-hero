@@ -1,15 +1,13 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <stdint.h>
 #include "engine.h"
 
 #include <stdbool.h>
 typedef enum {
-    GAME_STATE_NONE = 0,
     GAME_STATE_RUNNING,
     GAME_STATE_PAUSED,
-    GAME_STATE_ENDING,
+    GAME_STATE_SHUTDOWN,
 } GameState;
 
 typedef struct {
@@ -18,6 +16,8 @@ typedef struct {
 
 bool game_init(Game* game, Engine* engine);
 void game_update(Game* game, Engine* engine, double delta_time);
+void process_input(Game *game, SDL_Event *event);
 void game_render(Game* game, Engine* engine, double delta_time );
-void game_destroy(Game* game);
+bool game_shutdown(Game* game);
+
 #endif

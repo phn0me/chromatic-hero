@@ -1,6 +1,5 @@
 #include "game.h"
 #include "engine.h"
-#include <stdio.h>
 #include <SDL3/SDL_main.h>
 
 int main(int argc, char* argv[]) {
@@ -10,37 +9,32 @@ int main(int argc, char* argv[]) {
     Engine engine;
     Game game;
 
-    if (!engine_init(&engine, "Chromatic Aberration", 640, 480)) {
+    if (!engine_init(&engine, "Chromatic Abberation", 640, 480)) {
         return 1;
     }
-
     if (!game_init(&game, &engine)) {
-        engine_shutdown(&engine);
         return 1;
     }
+    bool running = true;
 
-    while (game.state == GAME_STATE_RUNNING) {  // Ensure this matches enum!
+    while (running) {
         SDL_Event event;
-        const bool *key_state = SDL_GetKeyboardState(NULL);
-
-        // Pump events (handles window close, input, etc.)
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_EVENT_QUIT) {
-                game.state = GAME_STATE_PAUSED;
+                running = false;
             }
         }
-
-        engine_update(&engine);  // Updates input_state BEFORE checking
-
-        if (key_state[SDL_SCANCODE_ESCAPE]) {
-            printf("ESCAPE pressed\n");
-            game.state = GAME_STATE_PAUSED;
-            break;  // Exit loop
-        }
-
+        process_input(&game, &event);
+        game_update(&game, &engine, engine.timer.delta_time);
+        engine_update(&engine);
         engine_render(engine.renderer);
+        if (game.state == GAME_STATE_SHUTDOWN) {
+            running = false;
+        }
     }
 
     engine_shutdown(&engine);
+    SDL_Quit();
+
     return 0;
 }
