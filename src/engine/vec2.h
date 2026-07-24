@@ -2,6 +2,7 @@
 #define VEC2_H
 
 #include <stdint.h>
+
 typedef struct {
     float x;
     float y;
