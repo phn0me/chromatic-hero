@@ -12,10 +12,9 @@ bool game_init(Game* game, Engine* engine) {
     return true;
 }
 
-void process_input(Game *game, SDL_Event *event) {
+void process_input(Game *game) {
+    // Add SDL_Event *event later on to handle event based input, like opening inventory and whatnot.
    const bool *key_state = SDL_GetKeyboardState(NULL);
-    // Pump events (handles window close, input, etc.)
-    (void)event;
     if (key_state[SDL_SCANCODE_ESCAPE]) {
         game->state = GAME_STATE_SHUTDOWN;
     }

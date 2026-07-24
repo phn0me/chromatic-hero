@@ -23,8 +23,9 @@ int main(int argc, char* argv[]) {
             if (event.type == SDL_EVENT_QUIT) {
                 running = false;
             }
+
+            process_input(&game);
         }
-        process_input(&game, &event);
         game_update(&game, &engine, engine.timer.delta_time);
         engine_update(&engine);
         engine_render(engine.renderer);
